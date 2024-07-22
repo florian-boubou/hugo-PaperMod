@@ -2,6 +2,9 @@
 
 {{- if not .Date.IsZero -}}
 {{- $scratch.Add "meta" (slice (printf "<span title='%s'>%s</span>" (.Date) (.Date | time.Format (default "January 2, 2006" site.Params.DateFormat)))) }}
+{{-     if (gt .Lastmod .Date) -}}
+{{-     $scratch.Add "meta" (slice (printf "Mis à jour le&nbsp;<span title='%s'>%s</span>" (.Lastmod) (.Lastmod | time.Format (default "January 2, 2006" site.Params.DateFormat)))) -}}
+{{-     end -}}
 {{- end }}
 
 {{- if (.Param "ShowReadingTime") -}}
