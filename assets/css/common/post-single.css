@@ -301,6 +301,10 @@
     margin-bottom: 10px;
 }
 
+.post-footer>.comment-post {
+    color: var(--content);
+}
+
 .post-tags {
     display: flex;
     flex-wrap: wrap;

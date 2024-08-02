@@ -43,6 +43,9 @@
   {{- end }}
 
   <footer class="post-footer">
+    {{- if (.Param "commentPostUrl") -}}
+    {{- partial "comment_post.html" . }}
+    {{- end -}}
     {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
     <ul class="post-tags">
       {{- range ($.GetTerms $tags) }}
