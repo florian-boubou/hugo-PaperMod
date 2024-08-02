@@ -1,0 +1,5 @@
+{{- if and .Url .Event .Content -}}
+<a href="{{ .Url }}" data-umami-event="{{ .Event }}" {{ with (.Target) }}target="{{ . }}"{{ end }}>{{ .Content }}</a>
+{{- else -}}
+{{- errorf "The %q partial requires all three 'Url', 'Event' and 'Content' arguments. See %s" .Name .Position }}
+{{- end -}}
