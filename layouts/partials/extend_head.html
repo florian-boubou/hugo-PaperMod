@@ -9,3 +9,9 @@
 {{- if hugo.IsProduction -}}
 <script defer src="https://riviael.fr/script.js" data-website-id="dbc17566-3858-43b6-93e0-8713c2fa0607"></script>
 {{- end -}}
+
+{{- with .Sitemap -}}
+{{- if .Disable -}}
+<meta name="robots" content="noindex">
+{{- end -}}
+{{- end -}}
