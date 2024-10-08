@@ -17,6 +17,9 @@
 {{- end }}
 
 {{- if .IsPage }}
+{{- /* Mastodon handle to show author under linked articles */}}
+{{ with site.Params.mastodonHandle }}<meta name="fediverse:creator" content="{{ . }}" />{{ end }}
+
 {{- $iso8601 := "2006-01-02T15:04:05-07:00" -}}
 <meta property="article:section" content="{{ .Section }}" />
 {{ with .PublishDate }}<meta property="article:published_time" {{ .Format $iso8601 | printf "content=%q" | safeHTMLAttr }} />{{ end }}
@@ -26,9 +29,11 @@
 {{- with .Params.audio }}<meta property="og:audio" content="{{ . }}" />{{ end }}
 {{- with .Params.locale }}<meta property="og:locale" content="{{ . }}" />{{ end }}
 {{- with site.Params.title }}<meta property="og:site_name" content="{{ . }}" />{{ end }}
-{{- with .Params.videos }}{{- range . }}
-<meta property="og:video" content="{{ . | absURL }}" />
-{{ end }}{{ end }}
+{{- with .Params.videos }}
+  {{- range . }}
+    <meta property="og:video" content="{{ . | absURL }}" />
+  {{ end }}
+{{ end }}
 
 {{- /* If it is part of a series, link to related articles */}}
 {{- $permalink := .Permalink }}
