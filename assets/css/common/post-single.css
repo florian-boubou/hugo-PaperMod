@@ -301,7 +301,7 @@
     margin-bottom: 10px;
 }
 
-.post-footer>.comment-post {
+.post-footer>#comment-post {
     color: var(--content);
 }
 
