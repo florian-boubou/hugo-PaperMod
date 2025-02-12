@@ -7,11 +7,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 </style>
 {{- if hugo.IsProduction -}}
-<script defer src="https://riviael.fr/script.js" data-website-id="dbc17566-3858-43b6-93e0-8713c2fa0607"></script>
+    <script defer src="https://riviael.fr/script.js" data-website-id="dbc17566-3858-43b6-93e0-8713c2fa0607"></script>
+
+    {{- if .IsHome }}
+        <link rel="preload" type="fetch" href="https://octothorp.es/?uri=https://riviael.fr">
+    {{- end -}}
 {{- end -}}
 
 {{- with .Sitemap -}}
-{{- if .Disable -}}
-<meta name="robots" content="noindex">
-{{- end -}}
+    {{- if .Disable -}}
+        <meta name="robots" content="noindex">
+    {{- end -}}
 {{- end -}}
