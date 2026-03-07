@@ -1,11 +1,13 @@
 {{- /* Comments area start */ -}} {{- /* to add comments read =>
 https://gohugo.io/content-management/comments/ */ -}} {{- /* Comments area end
 */ -}}
+{{- $baseUrl := site.Param "inbloxBaseUrl" }}
+
 <section class="post-comments">
     <h2>Commentaires</h2>
     <section
         class="comments-list"
-        hx-get="http://localhost:3000/comments?url={{ page.Permalink }}"
+        hx-get="{{ $baseUrl }}/comments?url={{ page.Permalink }}"
         hx-trigger="intersect once"
     >
         <p>Chargement des commentaires…</p>
@@ -76,7 +78,7 @@ https://gohugo.io/content-management/comments/ */ -}} {{- /* Comments area end
                 }
 
                 const response = await fetch(
-                    "http://localhost:3000/api/comments",
+                    "{{ $baseUrl }}/comments",
                     {
                         method: "POST",
                         headers: {
