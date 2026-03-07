@@ -134,7 +134,9 @@
 }
 
 .post-content table th,
-.post-content table:not(.highlighttable, .highlight table, .gist .highlight) td {
+.post-content
+    table:not(.highlighttable, .highlight table, .gist .highlight)
+    td {
     min-width: 80px;
     padding: 8px 5px;
     line-height: 1.5;
@@ -297,11 +299,11 @@
     margin-top: 56px;
 }
 
-.post-footer>* {
+.post-footer > * {
     margin-bottom: 10px;
 }
 
-.post-footer>#comment-post {
+.post-footer > #comment-post {
     color: var(--content);
 }
 
@@ -403,11 +405,80 @@ h6:hover .anchor {
     text-align: left;
 }
 
-h1>a>svg {
+h1 > a > svg {
     display: inline;
 }
 
 img.in-text {
     display: inline;
     margin: auto;
+}
+
+.post-comments form section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+}
+
+.post-comments form label {
+    font-weight: 500;
+}
+
+.post-comments form input,
+.post-comments form textarea {
+    background: #eee;
+    border-radius: 8px;
+}
+
+.post-comments form input[type="submit"] {
+    padding: 8px 12px;
+    background: var(--primary);
+    font-weight: bold;
+}
+
+.post-comments dialog {
+    background: var(--entry);
+    border: none;
+    border-radius: var(--radius);
+}
+
+.post-comments dialog header {
+    padding: 8px;
+    color: var(--primary);
+}
+
+.post-comments dialog main {
+    padding: 8px;
+    color: var(--content);
+}
+
+body:has(dialog[open]) {
+    filter: blur(3px) grayscale(0.7);
+}
+
+.post-comments .comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.post-comments .comments-list article {
+    background: var(--entry);
+    padding: 8px;
+    border-radius: var(--radius);
+}
+
+.post-comments .comments-list article > header {
+    font-size: 17px;
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.post-comments .comments-list article > main {
+    color: var(--content);
+}
+
+.post-comments .comments-list article > footer > small {
+    color: var(--secondary);
+    font-size: 12px;
 }

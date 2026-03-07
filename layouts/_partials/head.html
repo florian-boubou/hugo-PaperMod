@@ -74,6 +74,10 @@
 <link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" rel="preload stylesheet" as="style">
 {{- end }}
 
+{{- $htmx_js := resources.Get "js/htmx.min.js" -}}
+<script src="{{ $htmx_js.RelPermalink }}"></script>
+<meta name="htmx-config" content='{"selfRequestsOnly": false}'/>
+
 {{- /* Search */}}
 {{- if (eq .Layout `search`) -}}
 <link crossorigin="anonymous" rel="preload" as="fetch" href="../index.json">

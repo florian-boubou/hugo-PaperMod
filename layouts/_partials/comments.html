@@ -1,3 +1,97 @@
-{{- /* Comments area start */ -}}
-{{- /* to add comments read => https://gohugo.io/content-management/comments/ */ -}}
-{{- /* Comments area end */ -}}
+{{- /* Comments area start */ -}} {{- /* to add comments read =>
+https://gohugo.io/content-management/comments/ */ -}} {{- /* Comments area end
+*/ -}}
+<section class="post-comments">
+    <h2>Commentaires</h2>
+    <section
+        class="comments-list"
+        hx-get="http://localhost:3000/comments?url={{ page.Permalink }}"
+        hx-trigger="intersect once"
+    >
+        <p>Chargement des commentaires…</p>
+    </section>
+
+    <h3>Laissez un commentaire ici !</h3>
+    <form id="commentForm">
+        <section>
+            <label>Nom</label>
+            <input name="name" required maxlength="50" />
+        </section>
+        <section>
+            <label>Email</label>
+            <input name="email" type="email" required maxlength="100" />
+        </section>
+        <section>
+            <label>Message</label>
+            <textarea
+                name="comment"
+                rows="5"
+                required
+                maxlength="5000"
+            ></textarea>
+        </section>
+        <input type="hidden" name="page_url" value="{{page.Permalink}}" />
+
+        <input type="submit" value="Envoyer" />
+    </form>
+
+    <dialog id="commentCreatedDialog" closedBy="any">
+        <header>
+            <h3>Commentaire enregistré</h3>
+        </header>
+        <main>
+            Commentaire bien pris en compte. Vous le verrez publié une fois que
+            l'administrateur de ce site l'aura accepté.
+        </main>
+    </dialog>
+
+    <dialog id="commentErrorDialog" closedBy="any">
+        <header>
+            <h3>Erreur survenue</h3>
+        </header>
+        <main>
+            Une erreur est survenue lors de la sauvegarde de votre commentaire.
+            Veuillez ré-essayer après un rafraîchissement ou
+            <a href="mailto:contact@riviael.fr">contacter l'administrateur</a>
+        </main>
+    </dialog>
+</section>
+
+<script>
+    (() => {
+        const createdDialog = document.querySelector("#commentCreatedDialog");
+        const errorDialog = document.querySelector("#commentErrorDialog");
+
+        document.forms["commentForm"].addEventListener(
+            "submit",
+            async (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const body = new URLSearchParams();
+                const elements = document.forms["commentForm"].elements;
+
+                for (const elt of elements) {
+                    body.append(elt.name, elt.value);
+                }
+
+                const response = await fetch(
+                    "http://localhost:3000/api/comments",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                        },
+                        body,
+                    },
+                );
+
+                if (response.ok) {
+                    createdDialog.showModal();
+                } else {
+                    errorDialog.showModal();
+                }
+            },
+        );
+    })();
+</script>
