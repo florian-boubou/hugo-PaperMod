@@ -29,6 +29,9 @@
 
 .first-entry .entry-footer {
     font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--content-gap);
 }
 
 .home-info .entry-content {

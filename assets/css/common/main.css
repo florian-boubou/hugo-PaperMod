@@ -27,7 +27,6 @@
     margin-inline-start: auto;
 }
 
-
 .social-icons a {
     display: inline-flex;
     padding: 10px;
@@ -36,6 +35,16 @@
 .social-icons a svg {
     height: 26px;
     width: 26px;
+}
+
+.badges {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.badges[align="center"] {
+    justify-content: center;
 }
 
 code {

@@ -1,0 +1,10 @@
+<div class="badges" {{ with .align}}align="{{.}}" {{- end }}>
+    {{- range site.Params.badges }} {{- $imgResource := resources.Get .img }}
+    {{- if .url }}
+    <a href="{{.url}}">
+        <img src="{{ $imgResource.RelPermalink }}" alt="{{ .img_alt }}" />
+    </a>
+    {{- else }}
+    <img src="{{ $imgResource.RelPermalink }}" alt="{{ .img_alt }}" />
+    {{- end }} {{- end -}}
+</div>
