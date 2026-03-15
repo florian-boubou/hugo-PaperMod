@@ -1,21 +1,33 @@
-{{- /* Head custom content area start */ -}}
-{{- /*     Insert any custom code (web-analytics, resources, etc.) - it will appear in the <head></head> section of every page. */ -}}
-{{- /*     Can be overwritten by partial with the same name in the global layouts. */ -}}
-{{- /* Head custom content area end */ -}}
+{{- /* Head custom content area start */ -}} {{- /* Insert any custom code
+(web-analytics, resources, etc.) - it will appear in the <head></head> section
+of every page. */ -}} {{- /* Can be overwritten by partial with the same name in
+the global layouts. */ -}} {{- /* Head custom content area end */ -}}
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+    rel="stylesheet"
+/>
 {{- if hugo.IsProduction -}}
-    <script defer src="https://riviael.fr/script.js" data-website-id="dbc17566-3858-43b6-93e0-8713c2fa0607"></script>
+<script
+    defer
+    src="https://riviael.fr/script.js"
+    data-website-id="dbc17566-3858-43b6-93e0-8713c2fa0607"
+></script>
 
-    {{- if .IsHome }}
-        <link rel="preload" as="fetch" href="https://octothorp.es/?uri=https://riviael.fr">
-    {{- end -}}
-{{- end -}}
-
-{{- with .Sitemap -}}
-    {{- if .Disable -}}
-        <meta name="robots" content="noindex">
-    {{- end -}}
-{{- end -}}
+{{- if .IsHome }}
+<link
+    rel="preload"
+    as="fetch"
+    href="https://octothorp.es/?uri=https://riviael.fr"
+/>
+{{- else if .IsPage }}
+<link
+    rel="preload"
+    as="fetch"
+    href="https://octothorp.es/?uri={{ .Permalink }}&as=keywords"
+/>
+{{- end -}} {{- end -}} {{- with .Sitemap -}} {{- if .Disable -}}
+<meta name="robots" content="noindex" />
+{{- end -}} {{- end -}}
