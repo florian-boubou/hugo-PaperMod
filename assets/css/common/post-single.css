@@ -504,6 +504,7 @@ body:has(dialog[open]) {
 
 .post-comments .comments-list article > main {
     color: var(--content);
+    white-space: preserve-breaks;
 }
 
 .post-comments .comments-list article > footer > small {
